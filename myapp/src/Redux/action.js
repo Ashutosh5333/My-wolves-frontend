@@ -73,6 +73,25 @@ const DelProductFail = () => {
    }
 }
 
+
+const getsingledataReq = () =>{
+    return {
+       type: types.SINGLE_PRODUCT_REQUEST
+    }
+ } 
+ const getsingledataSucess = (payload) => {
+    return {
+       type :types.SINGLE_PRODUCT_SUCCESS,
+       payload,
+    }
+ }
+ const getsingledataFail = () => {
+   return {
+       type :types.SINGLE_PRODUCT_FAILURE
+   }
+ }
+
+
 const  getProducts = (dispatch) => {
    dispatch(getProductReq())
    return axios.get(`http://localhost:8000/todo`)
@@ -97,13 +116,24 @@ const  ADDProducts =(payload) => (dispatch) => {
 
 // -------------
 
-const  EditProducts =(id) => (dispatch) => {
+const  EditProducts =(id,payload) => (dispatch) => {
     dispatch(EditProductReq())
-    return axios.patch(`http://localhost:8000/todo/edit/${id}`)
+    return axios.patch(`http://localhost:8000/todo/edit/${id}`,payload)
      .then((r) => {
-         dispatch(EditProductSucess(r.data));
+  return      dispatch(EditProductSucess(r.data));
      }).catch((e)=> {
          dispatch(EditProductFail())
+     })
+ }
+
+ 
+export  const  SingleProducts =(id) => (dispatch) => {
+    dispatch(getsingledataReq())
+    return axios.get(`http://localhost:8000/todo/${id}`)
+     .then((r) => {
+   return     dispatch(getsingledataSucess(r.data));
+     }).catch((e)=> {
+         dispatch(getsingledataFail())
      })
  }
 

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Table,  Thead,  Tbody, Button,   Tr,  Th,  Td,    TableContainer,} from '@chakra-ui/react'
 import { DelProducts, getProducts } from "../Redux/action";
 import "./productcard.css"
+import { Link } from "react-router-dom";
 
 const ProductCard = ({ item }) => {
       const dispatch = useDispatch();
@@ -40,7 +41,9 @@ const ProductCard = ({ item }) => {
         <Td>{el.description}</Td>
         <Td>{el.title} </Td>
         <Td>
+         <Link to={`/single/${el._id}`}>
          <Button > Edit </Button>
+         </Link>
         </Td>
         <Td>
          <Button onClick={() =>del(el._id)} color="red">Delete </Button>

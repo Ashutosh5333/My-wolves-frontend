@@ -4,8 +4,7 @@ const initialState = {
   products: [],
   isLoading: false,
   isError: false,
-  cartitems:[],
-  cartQuantity:0
+
 };
 
 export const reducer = (state = initialState, action) => {
@@ -32,11 +31,7 @@ export const reducer = (state = initialState, action) => {
         isError: true,
         products: [],
       };
-     case types.Cart_PRODUCT_SUCCESS:
-      return{
-        ...state,
-        payload,
-      }
+    
 
     default:
       return state;
