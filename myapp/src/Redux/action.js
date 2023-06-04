@@ -85,9 +85,9 @@ const  getProducts = (dispatch) => {
 
 // ---------------
 
-const  ADDProducts =(params) => (dispatch) => {
+const  ADDProducts =(payload) => (dispatch) => {
     dispatch(AddProductReq())
-    return axios.post(`http://localhost:8000/todo/create`,params)
+    return axios.post(`http://localhost:8000/todo/create`,payload)
      .then((r) => {
       return   dispatch(AddProductSucess(r.data));
      }).catch((e)=> {
